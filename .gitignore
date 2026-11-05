@@ -1,0 +1,21 @@
+# Run outputs and checkpoints
+model_b_runs/
+*.pt
+*.joblib
+*.zip
+
+# Data
+*.csv
+*.parquet
+
+# Python / Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
