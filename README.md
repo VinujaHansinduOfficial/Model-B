@@ -26,6 +26,10 @@ The notebook `model_b_v3_directional_multitask_endpoint.ipynb` contains the V3 m
 
 The leakage checks pass: prefix replay, future perturbation, label-input exclusion and model prefix tests.
 
+### Architecture search (Nov 2026)
+
+A CPU search over model families, features, hyperparameters and calibration is in `research/safe_tp_search/`. Best: **GBDT 5% quantile on log Z + causal ZigZag state at depths 3/5/8/24, with 20-day causal rolling recalibration at 98.5%**. It gives a mean TP of 0.169% with every window ≥ 98.4%, against 0.164% for the original GBDT under the same calibration. On the untouched 15 Oct–1 Nov 2026 holdout: 0.130% vs 0.125% (original) vs 0.085% (fixed ATR). Quantile MLPs, distribution heads, threshold ladders and blends did not beat it. Strict accuracy stays at 13–15% for every model.
+
 ### What this means
 
 - **The limit is information, not the network.** The network matches a fixed ATR multiple. The gradient-boosted model gets a ~50% larger TP at the same 98% accuracy.
